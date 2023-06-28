@@ -4,15 +4,15 @@ void main(){
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget{
+class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return MaterialApp(
-      home : Scaffold(
-        appBar : AppBar(
-          title : Text('Test'),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Test'),
         ),
-        body : Center(child: GestureDetector(child : Text('HelloWorld'))),
+        body: Center(child: GestureDetector(child: Text('HelloWorld'))),
       ),
     );
   }
