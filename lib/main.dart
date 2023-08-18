@@ -1,23 +1,57 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lab/ch8_4_stateful/test.dart';
+import 'package:intl/intl.dart';
+import 'package:table_calendar/table_calendar.dart';
 
-void main(){
-  runApp(MyApp());
+void main() => runApp(CalendarApp());
+
+class CalendarApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Calendar App',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: CalendarScreen(),
+    );
+  }
 }
 
-class MyApp extends StatelessWidget{
+class CalendarScreen extends StatefulWidget {
   @override
-  Widget build(BuildContext context){
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Test'),
+  _CalendarScreenState createState() => _CalendarScreenState();
+}
+
+class _CalendarScreenState extends State<CalendarScreen> {
+  DateTime _selectedDate = DateTime.now();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Calendar App'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text(
+              DateFormat.yMMMM().format(_selectedDate),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 20),
+            TableCalendar(
+              focusedDay: _selectedDate,
+              firstDay: DateTime(DateTime.now().year - 1),
+              lastDay: DateTime(DateTime.now().year + 1),
+              calendarFormat: CalendarFormat.month,
+              onFormatChanged: (format) {},
+              onPageChanged: (focusedDay) {
+                setState(() {
+                  _selectedDate = focusedDay;
+                });
+              },
+            ),
+          ],
         ),
-        body: Column(children: [
-          Image.asset('images/sub1/1.png'),
-          Image.asset('images/sub1/2.png'),
-          Image.asset('images/sub1/3.png')
-        ],),
       ),
     );
   }
