@@ -35,7 +35,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
           children: <Widget>[
             Text(
               DateFormat.yMMMM().format(_selectedDate),
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 20),
             TableCalendar(
